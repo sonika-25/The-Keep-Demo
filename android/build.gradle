@@ -16,6 +16,17 @@ buildscript {
         classpath("com.facebook.react:react-native-gradle-plugin")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
     }
+    // android/build.gradle
+
+    allprojects {
+        repositories {
+            // ...other repos
+            maven {
+                url 'https://api.mapbox.com/downloads/v2/releases/maven'
+            }
+            // ...even more repos?
+        }
+    }
 }
 
 apply plugin: "com.facebook.react.rootproject"
