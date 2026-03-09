@@ -7,25 +7,32 @@ import { boundsFromLocations } from "./mapUtils";
 
 export type Step = {
   maneuver: { instruction: string; location: [number, number] };
-  distance?: number;
-  duration?: number;
-  mode?: string;
-  name?:string;
+  distance: number;
+  duration: number;
+  mode: string;
+  name:string;
+  bannerInstruction:{primary: string};
 };
 
 export type RouteFeature = GeoJSON.Feature<GeoJSON.LineString>;
 
+//helper to build waypoints for URL
 function buildWaypoints(locs: { coordinates: [number, number] }[]): string {
   return locs.map((l) => `${l.coordinates[0]},${l.coordinates[1]}`).join(";");
 }
 
+//build URL
 function buildDirectionsUrl(locs: { coordinates: [number, number] }[]): string {
   const waypoints = buildWaypoints(locs);
   return `https://api.mapbox.com/directions/v5/mapbox/driving/${encodeURIComponent(
     waypoints
-  )}?alternatives=true&annotations=distance&geometries=geojson&language=en&overview=full&steps=true&access_token=${MAPBOX_TOKEN}`;
+  )}?alternatives=true&annotations=distance%2Cduration&banner_instructions=true&geometries=geojson&language=en&overview=full&roundabout_exits=true&steps=true&access_token=${MAPBOX_TOKEN}`
+  //return `https://api.mapbox.com/directions/v5/mapbox/driving/${encodeURIComponent(
+  //  waypoints
+  //)}?alternatives=true&annotations=distance%2Cduration&banner_instructions=true&geometries=geojson&language=en&overview=full&roundabout_exits=true&steps=true&access_token=${MAPBOX_TOKEN}`;
 }
 
+//call the API
 export async function fetchDirectionsRoute(locations: { coordinates: LngLat }[]): Promise<{
   routeFeature: RouteFeature;
   routeCoords: LngLat[];
@@ -37,6 +44,7 @@ export async function fetchDirectionsRoute(locations: { coordinates: LngLat }[])
 
   if (!res.ok) {
     const text = await res.text();
+    console.log(text)
     throw new Error(`Directions API failed: ${res.status} ${text}`);
   }
   

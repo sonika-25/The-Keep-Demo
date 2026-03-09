@@ -13,6 +13,7 @@ import {
 } from 'react-native-safe-area-context';
 import MapScreen from './MapScreen';
 import HomeScreen from './HomeScreen';
+import TryScreen from './TryScree';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -25,7 +26,8 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator>   
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Map" component={MapScreen} />   
+        <Stack.Screen name="Map" component={MapScreen} /> 
+        <Stack.Screen name="Try" component={TryScreen} />   
       </Stack.Navigator>
     </NavigationContainer>
   );

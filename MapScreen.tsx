@@ -4,15 +4,19 @@ import { StatusBar, StyleSheet, View, Text, Pressable, TouchableOpacity } from "
 import Mapbox, { Camera, MapView, UserLocation, PointAnnotation, ShapeSource, LineLayer } from "@rnmapbox/maps";
 import { lineString, point } from "@turf/helpers";
 import nearestPointOnLine from "@turf/nearest-point-on-line";
-import StepDirectionsBox from "./StepDirectionsBox";
-import { locations, INITIAL_CENTER, INITIAL_ZOOM, type LngLat } from "./routeData";
+import { getLocationsForRoute, INITIAL_ZOOM, type LngLat } from "./routeData";
 import { distanceMeters, toLineFeature } from "./mapUtils";
 import { MAP_STYLE_URL  , MAPBOX_TOKEN} from "./mapboxConfig";
 import { downloadOfflineForLocations, fetchDirectionsRoute, type RouteFeature, type Step } from "./routeServices";
+import NewSteps from "./NewSteps";
 Mapbox.setAccessToken( MAPBOX_TOKEN)
 const STEP_ARRIVE_M = 70;
 
-export default function MapScreen() {
+export default function MapScreen({ route }: any) {
+  const routeNumber = route?.params?.routeNumber ?? 1;
+  console.log(route.params.routeNumber)
+  const locations = getLocationsForRoute(routeNumber);
+  const INITIAL_CENTER = locations[0].coordinates;
   const [routeFeature, setRouteFeature] = useState<RouteFeature | null>(null);
   const [routeCoords, setRouteCoords] = useState<LngLat[]>([]);
   const [tripMinutes, setTripMinutes] = useState<number | null>(null);
@@ -45,7 +49,7 @@ export default function MapScreen() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [route]);
 
   // Split route into covered vs remaining
   useEffect(() => {
@@ -69,7 +73,7 @@ export default function MapScreen() {
   }, [userCoord, routeCoords]);
 
   // Advance steps as user reaches maneuver points
-  useEffect(() => {
+  /*useEffect(() => {
     if (!userCoord) return;
     if (steps.length === 0) return;
 
@@ -115,7 +119,7 @@ export default function MapScreen() {
 
   const currentStepMin =
     currentStep?.duration != null ? Math.max(1, Math.round(currentStep.duration / 60)) : null;
-  const middleInstruction = makeMiddleInstruction(currentStep);
+  const middleInstruction = makeMiddleInstruction(currentStep);*/
 
   return (
     <View style={styles.container}>
@@ -217,7 +221,7 @@ export default function MapScreen() {
       </MapView>
 
     {(tripMinutes !== null || steps.length > 0) && (
-        <StepDirectionsBox steps={steps} userCoord={userCoord} stepArriveM={STEP_ARRIVE_M} />
+        <NewSteps steps={steps} userCoord={userCoord}/>
     )}
 
     </View>
@@ -227,8 +231,6 @@ export default function MapScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   map: { flex: 1 },
-
-  
 
   marker: {
     width: 14,

@@ -1,0 +1,61 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/CreatoDisplay-Black.otf",
+      "sha1": "daf2bfcef050664e197abb38f41e66ec7b1b8458"
+    },
+    {
+      "path": "assets/fonts/CreatoDisplay-BlackItalic.otf",
+      "sha1": "d337ca74f28c71748e1cd1bf11a44aaa612b62f5"
+    },
+    {
+      "path": "assets/fonts/CreatoDisplay-Bold.otf",
+      "sha1": "04c15e218e5b15ae100de82faccabf00a02ab23a"
+    },
+    {
+      "path": "assets/fonts/CreatoDisplay-BoldItalic.otf",
+      "sha1": "ec6f1288e40d43b8c1539da9e159399ce203a051"
+    },
+    {
+      "path": "assets/fonts/CreatoDisplay-ExtraBold.otf",
+      "sha1": "3f8ac479c34e373cfa5f9dd08a0aa237307eda95"
+    },
+    {
+      "path": "assets/fonts/CreatoDisplay-ExtraBoldItalic.otf",
+      "sha1": "4b713c4c1c42ae7b102877f1f68e14374c3235fc"
+    },
+    {
+      "path": "assets/fonts/CreatoDisplay-Light.otf",
+      "sha1": "55d4d19e02ea93420f2b5edb8d8d9054f697d3bc"
+    },
+    {
+      "path": "assets/fonts/CreatoDisplay-LightItalic.otf",
+      "sha1": "7af4bd6a677cfc99a448116dee0e5201eff55866"
+    },
+    {
+      "path": "assets/fonts/CreatoDisplay-Medium.otf",
+      "sha1": "ef81a3dd3bc07f50445018640604a4df38cb945f"
+    },
+    {
+      "path": "assets/fonts/CreatoDisplay-MediumItalic.otf",
+      "sha1": "33bdd1fe85f3d7615190ceaecf464fb57ff6c036"
+    },
+    {
+      "path": "assets/fonts/CreatoDisplay-Regular.otf",
+      "sha1": "50754a7dceedb19d04a130a90eceb5146d9ebf08"
+    },
+    {
+      "path": "assets/fonts/CreatoDisplay-RegularItalic.otf",
+      "sha1": "acae93ab5e1cb23f95c915b5f17096d300b1525c"
+    },
+    {
+      "path": "assets/fonts/CreatoDisplay-Thin.otf",
+      "sha1": "f08202ee09aaaad28f69dd6c75204b8cd9e2e820"
+    },
+    {
+      "path": "assets/fonts/CreatoDisplay-ThinItalic.otf",
+      "sha1": "c8c938ae38493c15757d45d5ab69460dac421c80"
+    }
+  ]
+}
