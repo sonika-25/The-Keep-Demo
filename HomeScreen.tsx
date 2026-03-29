@@ -4,10 +4,25 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 type Props = {
   navigation: NativeStackNavigationProp<any>;
+  route:any
 };
-
-export default function HomeScreen({ navigation }: Props) {
+/*
+'''
+<TouchableOpacity
+      style = {styles.button}
+      onPress={()=>{
+        setRouteNumber(2);
+        console.log(1)
+        navigation.navigate("Map",{routeNumber:2, tripType: tripType})
+      }}>
+        <Text>Mokosz</Text>
+        </TouchableOpacity>
+        '''
+*/
+export default function HomeScreen({ navigation,route }: Props) {
   const [routeNumber, setRouteNumber] = useState<number | null>(null);
+  const [opener,setOpener]=useState ("coming from?")
+  const tripType = route?.params?.tripType ?? "arrival";
   async function requestLocationPermission() {
     if (Platform.OS === "android") {
       try {
@@ -32,6 +47,9 @@ export default function HomeScreen({ navigation }: Props) {
   useEffect (()=>{
     const hasPermission = requestLocationPermission();
     console.log(hasPermission)
+    if (tripType=="departure"){
+      setOpener("going to?")
+    }
   },[])
   
   return (
@@ -43,13 +61,13 @@ export default function HomeScreen({ navigation }: Props) {
         style={styles.logo}
         resizeMode="contain"
       />
-      <Text style={styles.heading}>Where are you coming from? </Text>
+      <Text style={styles.heading}>Where are you {opener}</Text>
       <TouchableOpacity
       style = {styles.button}
       onPress={()=>{
         setRouteNumber(0);
         console.log(0)
-        navigation.navigate("Map",{routeNumber:0})
+        navigation.navigate("Map",{routeNumber:0, tripType: tripType})
         }}>
         <Text> Hobart </Text>
         </TouchableOpacity>
@@ -58,25 +76,12 @@ export default function HomeScreen({ navigation }: Props) {
       onPress={()=>{
         setRouteNumber(1);
         console.log(1)
-        navigation.navigate("Map",{routeNumber:1})
+        navigation.navigate("Map",{routeNumber:1, tripType: tripType})
         }}>
         <Text>Launceston</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-      style = {styles.button}
-      onPress={()=>{
-        setRouteNumber(2);
-        console.log(1)
-        navigation.navigate("Map",{routeNumber:2})
-      }}>
-        <Text>Mokosz</Text>
-        </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate("Map",{routeNumber})}
-      >
-        <Text style={styles.buttonText}>Go to Map</Text>
-      </TouchableOpacity>
+        
+     
     </View>
   );
 }

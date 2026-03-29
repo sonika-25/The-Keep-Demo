@@ -4,129 +4,137 @@ import { StatusBar, StyleSheet, View, Text, Pressable, TouchableOpacity } from "
 import Mapbox, { Camera, MapView, UserLocation, PointAnnotation, ShapeSource, LineLayer } from "@rnmapbox/maps";
 import { lineString, point } from "@turf/helpers";
 import nearestPointOnLine from "@turf/nearest-point-on-line";
+import lineSliceAlong from "@turf/line-slice-along";
+import length from "@turf/length";
+import along from "@turf/along";
 import { getLocationsForRoute, INITIAL_ZOOM, type LngLat } from "./routeData";
-import { distanceMeters, toLineFeature } from "./mapUtils";
+import { toLineFeature } from "./mapUtils";
 import { MAP_STYLE_URL  , MAPBOX_TOKEN} from "./mapboxConfig";
-import { downloadOfflineForLocations, fetchDirectionsRoute, type RouteFeature, type Step } from "./routeServices";
+import { downloadOfflineForLocations, fetchDirectionsRoute,loadRouteFromCache,saveRouteToCache, type RouteFeature, type Step } from "./routeServices";
 import NewSteps from "./NewSteps";
 Mapbox.setAccessToken( MAPBOX_TOKEN)
-const STEP_ARRIVE_M = 70;
 
 export default function MapScreen({ route }: any) {
   const routeNumber = route?.params?.routeNumber ?? 1;
+  const tripType = route?.params?.tripType ?? "arrival";
+  const locations = getLocationsForRoute(routeNumber, tripType);
+  const offlinePackName = `offline-pack:${tripType}:${routeNumber}`;
   console.log(route.params.routeNumber)
-  const locations = getLocationsForRoute(routeNumber);
   const INITIAL_CENTER = locations[0].coordinates;
+  console.log("INTIAL CENTER: ",INITIAL_CENTER)
   const [routeFeature, setRouteFeature] = useState<RouteFeature | null>(null);
   const [routeCoords, setRouteCoords] = useState<LngLat[]>([]);
   const [tripMinutes, setTripMinutes] = useState<number | null>(null);
-
+  const [simulate, setSimulate] = useState(false);
   const [steps, setSteps] = useState<Step[]>([]);
-  const [stepIdx, setStepIdx] = useState(0);
-
+  const [offlineStarted, setOfflineStarted] = useState(false);
   const [userCoord, setUserCoord] = useState<LngLat | null>(null);
   const [coveredFeature, setCoveredFeature] = useState<GeoJSON.Feature<GeoJSON.LineString> | null>(null);
   const [remainingFeature, setRemainingFeature] = useState<GeoJSON.Feature<GeoJSON.LineString> | null>(null); 
   const cameraRef = useRef<Camera>(null);
 
-  // Fetch route once
+  //Fetch Route Data from cache if present, or call API
   useEffect(() => {
     let cancelled = false;
+
     (async () => {
-      try {
-        const out = await fetchDirectionsRoute(locations);
-        if (cancelled) return;
-        setRouteFeature(out.routeFeature);
-        setRouteCoords(out.routeCoords);
-        setTripMinutes(out.tripMinutes);
-        setSteps(out.steps);
-        setStepIdx(0);
+      try { //try cache
+        const cached = await loadRouteFromCache(routeNumber, tripType);
+        let routeData = cached;
+        if (!routeData) {
+          routeData = await fetchDirectionsRoute(locations); //call API if no cache
+          await saveRouteToCache(routeNumber, tripType, routeData);
+        }
+
+        if (cancelled || !routeData) return;
+
+        setRouteFeature(routeData.routeFeature); //FIND OUT
+        setRouteCoords(routeData.routeCoords); //Setting Route Coords
+        setTripMinutes(routeData.tripMinutes);//Setting time
+        setSteps(routeData.steps);//Setting steps
+  
+        const packName = `offline-pack:${tripType}:${routeNumber}`;
+        downloadOfflineForLocations(locations, packName).catch((e) =>
+          console.log("offline pack download failed:", e)
+        ); //saving tiles, styles etc (everything apart from route data)
       } catch (e) {
         console.log("route fetch failed:", e);
       }
     })();
 
     return () => {
-      cancelled = true;
+      cancelled = true; //stops from setting state if user exits but still saves data
     };
-  }, [route]);
+  }, [routeNumber, tripType]);
 
-  // Split route into covered vs remaining
+  
+  // simulate course (TESTING ONLY)
   useEffect(() => {
-    if (!userCoord) return;
+    if (!simulate) return;
     if (routeCoords.length < 2) return;
 
-    const routeLine = lineString(routeCoords);
-    const here = point(userCoord);
+    const routeLine = lineString(routeCoords); 
+    const totalKm = length(routeLine, { units: "kilometers" }); //calculates kms
 
-    const snapped = nearestPointOnLine(routeLine, here, { units: "kilometers" });
-    const snappedCoord = snapped.geometry.coordinates as LngLat;
+    let progressKm = 0;
 
-    const segIdx = Number((snapped.properties as any)?.index ?? 0);
-    const safeIdx = Math.max(0, Math.min(segIdx, routeCoords.length - 2));
+    const interval = setInterval(() => {
+      progressKm += 0.02;
 
-    const coveredCoords: LngLat[] = [...routeCoords.slice(0, safeIdx + 1), snappedCoord];
-    const remainingCoords: LngLat[] = [snappedCoord, ...routeCoords.slice(safeIdx + 1)];
+      if (progressKm >= totalKm) {
+        clearInterval(interval);
+        return;
+      }
 
-    setCoveredFeature(toLineFeature(coveredCoords));
-    setRemainingFeature(toLineFeature(remainingCoords));
+      const pt = along(routeLine, progressKm, { units: "kilometers" });
+      const coord = pt.geometry.coordinates as LngLat;
+
+      setUserCoord(coord);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [simulate, routeCoords]);
+
+
+// Split route into covered vs remaining using distance along polyline
+  useEffect(() => {
+    if (!userCoord) return; 
+    if (routeCoords.length < 2) return; //jittery otherwise
+
+    const routeLine = lineString(routeCoords);//creates a polyline following route
+    const here = point(userCoord); 
+
+    const snapped = nearestPointOnLine(routeLine, here, { units: "kilometers" }); //finds the nearest point to where the user is on route 
+    const snappedCoord = snapped.geometry.coordinates as LngLat; //coords to closes point as LngLat
+
+    const traveledKm = Number((snapped.properties as any)?.location ?? 0); //travelled line
+    const totalKm = length(routeLine, { units: "kilometers" });
+
+    const safeTraveledKm = Math.max(0, Math.min(traveledKm, totalKm)); //dist travelled
+
+    const covered =
+      safeTraveledKm <= 0
+        ? toLineFeature([routeCoords[0], snappedCoord]) //safety against edge cases where travelledKm is 0
+        : (lineSliceAlong(routeLine, 0, safeTraveledKm, { //draw a line from 0 to totalkmtravelled
+            units: "kilometers",
+          }) as GeoJSON.Feature<GeoJSON.LineString>);
+
+    const remaining =
+      safeTraveledKm >= totalKm
+        ? toLineFeature([snappedCoord, routeCoords[routeCoords.length - 1]])
+        : (lineSliceAlong(routeLine, safeTraveledKm, totalKm, { //rest of line
+            units: "kilometers",
+          }) as GeoJSON.Feature<GeoJSON.LineString>);
+
+    setCoveredFeature(covered);
+    setRemainingFeature(remaining);
   }, [userCoord, routeCoords]);
-
-  // Advance steps as user reaches maneuver points
-  /*useEffect(() => {
-    if (!userCoord) return;
-    if (steps.length === 0) return;
-
-    setStepIdx((i) => {
-      if (i >= steps.length - 1) return i;
-
-      const target = steps[i].maneuver.location as LngLat;
-      //console.log(steps[i])
-      const d = distanceMeters(userCoord, target);
-
-      //console.log(`step ${i + 1}/${steps.length} dist(m):`, Math.round(d));
-      if (d <= STEP_ARRIVE_M) return i + 1;
-      
-      return i;
-    });
-  }, [userCoord, steps]);
-
-  function formatDistance(meters?: number) {
-    if (meters == null) return "";
-    if (meters < 1000) return `${Math.round(meters)} m`;
-    return `${(meters / 1000).toFixed(1)} km`;
-    }
-
-    function makeMiddleInstruction(step?: Step) {
-    if (!step) return null;
-
-    const road = (step.name ?? "").trim();
-    const dist = formatDistance(step.distance);
-
-    // Don't spam for tiny segments
-    if (step.distance != null && step.distance < 120) return null;
-
-    if (road) return `Continue on ${road}${dist ? ` for ${dist}` : ""}`;
-    if (dist) return `Continue for ${dist}`;
-    return null;
-    }
-
-  const currentStep = steps[stepIdx];
-  const nextStep = steps[stepIdx + 1];
-
-  const currentInstruction = currentStep?.maneuver.instruction ?? "—";
-  const nextInstruction = nextStep?.maneuver.instruction ?? null;
-
-  const currentStepMin =
-    currentStep?.duration != null ? Math.max(1, Math.round(currentStep.duration / 60)) : null;
-  const middleInstruction = makeMiddleInstruction(currentStep);*/
 
   return (
     <View style={styles.container}>
       <StatusBar translucent backgroundColor={"transparent"} barStyle={"dark-content"} />
-
-      <Pressable onPress={() => downloadOfflineForLocations(locations)} style={styles.downloadBtn}>
-        <Text style={styles.downloadBtnText}>Download offline</Text>
+      <Pressable onPress={() => setSimulate(true)} style={styles.downloadBtn}>
+        <Text style={styles.downloadBtnText}>Simulate</Text>
       </Pressable>
       <Pressable
           style={styles.recenterBtn}
@@ -140,35 +148,17 @@ export default function MapScreen({ route }: any) {
           }}
         >
           <Text style={styles.recenterText}>◎</Text>
-        </Pressable>
+      </Pressable>
       <MapView
         style={styles.map}
         styleURL={MAP_STYLE_URL}
         zoomEnabled
-        projection="globe"
         rotateEnabled
         pitchEnabled
         logoEnabled
         compassEnabled
         scaleBarEnabled={false}
-      >
-        <Camera
-          ref={cameraRef}
-          centerCoordinate={INITIAL_CENTER}
-          zoomLevel={INITIAL_ZOOM}
-          animationDuration={3000}
-          animationMode="flyTo"
-        />
-
-        {routeFeature && (
-          <ShapeSource id="route-source" shape={routeFeature}>
-            <LineLayer
-              id="route-line"
-              style={{ lineWidth: 5, lineJoin: "round", lineCap: "round", lineOpacity: 0.9 }}
-            />
-          </ShapeSource>
-        )}
-
+      >     
         {coveredFeature && (
           <Mapbox.ShapeSource id="covered-src" shape={coveredFeature}>
             <Mapbox.LineLayer
@@ -221,8 +211,7 @@ export default function MapScreen({ route }: any) {
       </MapView>
 
     {(tripMinutes !== null || steps.length > 0) && (
-        <NewSteps steps={steps} userCoord={userCoord}/>
-    )}
+      <NewSteps steps={steps} userCoord={userCoord} routeCoords={routeCoords} />    )}
 
     </View>
   );

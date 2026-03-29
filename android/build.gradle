@@ -18,13 +18,19 @@ buildscript {
     }
     // android/build.gradle
 
-    allprojects {
-        repositories {
-            // ...other repos
-            maven {
-                url 'https://api.mapbox.com/downloads/v2/releases/maven'
-            }
-            // ...even more repos?
+   
+}
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+
+        maven {
+            url 'https://api.mapbox.com/downloads/v2/releases/maven'
+        }
+
+        maven {
+            url project(":react-native-async-storage_async-storage").file("local_repo")
         }
     }
 }
