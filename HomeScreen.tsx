@@ -70,7 +70,7 @@ export default function HomeScreen({ navigation,route }: Props) {
         navigation.navigate("Map",{routeNumber:0, tripType: tripType})
         }}>
         <Text> Hobart </Text>
-        </TouchableOpacity>
+      </TouchableOpacity>
       <TouchableOpacity
       style = {styles.button}
       onPress={()=>{
@@ -79,8 +79,16 @@ export default function HomeScreen({ navigation,route }: Props) {
         navigation.navigate("Map",{routeNumber:1, tripType: tripType})
         }}>
         <Text>Launceston</Text>
-        </TouchableOpacity>
-        
+      </TouchableOpacity>
+      <TouchableOpacity
+      style = {styles.button}
+      onPress={()=>{
+        setRouteNumber(0);
+        console.log(0)
+        navigation.navigate("Map",{routeNumber:2, tripType: tripType})
+        }}>
+        <Text> Test  </Text>
+      </TouchableOpacity>
      
     </View>
   );

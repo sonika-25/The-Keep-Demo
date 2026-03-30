@@ -10,18 +10,20 @@ export type LocationStop = {
 
 export const routeOptions:Record<number, LocationStop[] >= {
   0 :[
-    //{ id: "0", coordinates: [147.3271949, -42.8821377], name: "Hobart" },
-    // id: "1", coordinates: [148.04131898032878, -41.17826634239348], name: "The Keep" },
+    { id: "0", coordinates: [147.3271949, -42.8821377], name: "Hobart" },
+    {id: "1", coordinates: [148.04131898032878, -41.17826634239348], name: "The Keep" },
 
-    { id: "0", coordinates: [144.99799108195631,-37.910610377749386, ], name: "Hobart" },
-    { id: "1", coordinates: [ 144.98310532613206,-37.88236736801096,], name: "The Keep" },
+    
   ],
   1:[
-    //{ id: "0", coordinates: [147.205815, -41.545787], name: "Launceston Airport" },
-    //{ id: "1", coordinates: [148.04131898032878, -41.17826634239348], name: "The Keep" },
-    { id: "0", coordinates: [144.99799108195631,-37.910610377749386, ], name: "Launceston Airport" },
-    { id: "1", coordinates: [  145.006667424282,-37.859966925349376,], name: "The Keep" },
+    { id: "0", coordinates: [147.205815, -41.545787], name: "Launceston Airport" },
+    { id: "1", coordinates: [148.04131898032878, -41.17826634239348], name: "The Keep" },
+    
   ],
+  2: [
+    { id: "0", coordinates: [ 144.9798508239874,-37.8794347719512,], name: "Blade's Abode" },
+    { id: "1", coordinates: [ 144.9829229356322,-37.88229115613802,], name: "Giver of Life" },
+  ]
  
 };  
 

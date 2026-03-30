@@ -77,7 +77,7 @@ function getRouteCacheKey(routeNumber: number, tripType: string) {
   return `route-cache:${tripType}:${routeNumber}`;
 }
 
-//save to cache
+//save and load from cache
 export async function saveRouteToCache(
   routeNumber: number,
   tripType: string,
@@ -87,7 +87,7 @@ export async function saveRouteToCache(
   await AsyncStorage.setItem(key, JSON.stringify(data));
 }
 
-//load from cache if exists 
+
 export async function loadRouteFromCache(
   routeNumber: number,
   tripType: string
@@ -103,8 +103,6 @@ export async function loadRouteFromCache(
     return null;
   }
 }
-
-//download tiles styles etc
 export async function downloadOfflineForLocations(
   locations: { coordinates: LngLat }[],
   packName: string

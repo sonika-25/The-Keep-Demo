@@ -1,9 +1,11 @@
 //Directions box and step forwarding logic
 
 import React, { useEffect, useMemo, useState,useRef } from "react";
+//import {ArrowUp,ArrowRight,ArrowLeft,CornerUpRight,CornerUpLeft, RotateCcw,Navigation,Flag} from "lucide-react-native";
 import { StyleSheet, Text, View } from "react-native";
 import type { Step } from "./routeServices";
 import type { LngLat } from "./routeData";
+import { distanceMeters } from "./mapUtils";
 import { lineString, point } from "@turf/helpers";
 import nearestPointOnLine from "@turf/nearest-point-on-line";
 
@@ -13,24 +15,26 @@ type Props = {
   routeCoords: LngLat[];
 };
 const PROMOTE_M = 30; // when to show next maneuver as the main instruction
-const ARRIVE_M = 30;  
+const ARRIVE_M = 15;  
 
-export default function NewSteps({steps, userCoord, routeCoords}:Props){ //props from MapScreen
+export default function NewSteps({steps, userCoord, routeCoords}:Props){
     const [stepIdx, setStepIdx] = useState(0);
+    const [phase, setPhase] = useState (false)
     const [distToNextM, setDistToNextM] = useState<number | null>(null);
-    const [promoted,setPromoted] = useState(false)
-
+    const[promoted,setPromoted]=useState(false)
+    const [timeToNextS, setTimeToNextS] = useState<number | null>(null);
     //basic setup
     useEffect(() => {
-        //console.log(steps)
-        setStepIdx(0);
+        if (!steps.length) return
+        if (routeCoords.length <2 ) return
+        console.log(steps)
+        setPhase(false);
         setDistToNextM(null);
         setPromoted(false)
-        let step  = inferStepIdxFromUser(steps, userCoord, routeCoords) //case: user is not at start when app is loaded
-        if(steps){
-            //console.log(steps[step])
-            setStepIdx(step)
-        }
+        let step  = inferStepIdxFromUser(steps, userCoord, routeCoords)
+        console.log(steps[step])
+        setStepIdx(step)
+        
     }, [steps, routeCoords]);
 
     //step logic
@@ -45,8 +49,15 @@ export default function NewSteps({steps, userCoord, routeCoords}:Props){ //props
 
         const userAlongM = getDistanceAlongRouteMeters(routeCoords, userCoord);
         const nextAlongM = getDistanceAlongRouteMeters(routeCoords, nextStep.maneuver.location as LngLat);
+        const currAlongM = getDistanceAlongRouteMeters(routeCoords, currStep.maneuver.location as LngLat);
 
         const distToNext = Math.max(0, nextAlongM - userAlongM);
+        let nextTime = null;
+
+        if (nextStep?.distance > 0 && nextStep?.duration > 0) {
+            nextTime = (distToNext / nextStep.distance) * nextStep.duration;
+        }
+        setTimeToNextS(nextTime);
 
         console.log(
         "distToNext:", distToNext,
@@ -66,10 +77,11 @@ export default function NewSteps({steps, userCoord, routeCoords}:Props){ //props
         if (distToNext <= ARRIVE_M) {
         setStepIdx((i) => Math.min(i + 1, steps.length - 1));
         setPromoted(false);
+        setPhase(false);
         return;
         }
     }, [userCoord, steps, routeCoords, stepIdx, promoted]);
-    
+ 
     function getDistanceAlongRouteMeters(routeCoords: LngLat[], coord: LngLat): number {
         const routeLine = lineString(routeCoords);
         const snapped = nearestPointOnLine(routeLine, point(coord), { units: "kilometers" });
@@ -90,18 +102,34 @@ export default function NewSteps({steps, userCoord, routeCoords}:Props){ //props
 
         for (let i = 0; i < steps.length; i++) {
             const stepAlongM = getDistanceAlongRouteMeters(
-            routeCoords,
-            steps[i].maneuver.location as LngLat
+                routeCoords,
+                steps[i].maneuver.location as LngLat
             );
 
             if (userAlongM < stepAlongM) {
-            return Math.max(0, i - 1);
+                return Math.max(0, i - 1);
             }
         }
 
         return Math.max(0, steps.length - 1);
         }
     
+    function splitInstruction(instruction?: string) {
+        if (!instruction) return { line1: "", line2: "" };
+
+        const match = instruction.match(/\b(onto|toward|towards|for)\b/i);
+
+        if (!match || match.index == null) {
+            return { line1: instruction, line2: "" };
+        }
+
+        const idx = match.index;
+
+        return {
+            line1: instruction.slice(0, idx).trim(),
+            line2: instruction.slice(idx).trim(),
+        };
+        }
     //returns the main card calculating Time and Distance
     function ManeuverCard({
         primary,
@@ -119,24 +147,25 @@ export default function NewSteps({steps, userCoord, routeCoords}:Props){ //props
        
         const timeLabel = 
             timeM == null ? "" : timeM>=3600 ? (`${Math.floor(timeM / 3600)} hrs and ${Math.floor((timeM % 3600) / 60)}mins`) : `${Math.ceil(timeM / 60)} min`
+        const splitPrimary = splitInstruction(primary);
         return (
             <View style={styles.directionsBox}>
             <View style={styles.row}>
                 
                 <View style={{ flex: 1 }}>
-                    {!!distLabel && (
-                    <Text style={styles.distanceTop}>{distLabel}</Text>
-                    )}
+                    <View style={styles.topMetaRow}>
+                        {!!timeLabel && <Text style={styles.topMetaText}>{timeLabel}</Text>}
+                        {!!timeLabel && !!distLabel && <Text style={styles.topMetaDivider}> • </Text>}
+                        {!!distLabel && <Text style={styles.topMetaText}>{distLabel}</Text>}
+                        </View>
 
-                    <Text style={styles.primary}>{primary}</Text>
-
-                    {!!secondary && !promoted && (
-                    <Text style={styles.secondary}>Then {secondary}</Text>
-                    )}
-
-                    {!!timeLabel && (
-                    <Text style={styles.meta}>{timeLabel} remaining</Text>
-                    )}
+                        <Text style={styles.primary}>{splitPrimary.line1}</Text>
+                        {!!splitPrimary.line2 && (
+                        <Text style={styles.primarySub}>{splitPrimary.line2}</Text>
+                        )}
+                        {!!secondary && !promoted && (
+                        <Text style={styles.secondary}>{secondary}</Text>
+                        )}
                 </View>
                 </View>
                 </View>
@@ -159,15 +188,16 @@ export default function NewSteps({steps, userCoord, routeCoords}:Props){ //props
     primary = nextStep?.maneuver?.instruction ?? "";
     secondary = "";
     } else {
-    primary = `Continue ${currentStep?.mode} on ${currentStep?.name} for ${distLabel}`;
-    secondary = nextStep?.maneuver?.instruction ?? "";
+    primary = `Continue on ${currentStep?.name} for ${distLabel}`;
+    secondary = `Next: ${nextStep?.maneuver?.instruction}` ;
+    
     }
     return (
         <ManeuverCard
             primary={primary}
             secondary={secondary}
             distM={distToNextM}
-            timeM={steps[stepIdx].duration}
+            timeM={timeToNextS}
             promoted={promoted}
         />
     );
@@ -202,7 +232,31 @@ icon: {
   justifyContent: "center",
   marginRight: 12,
 },
+topMetaRow: {
+  flexDirection: "row",
+  justifyContent: "center",
+  alignItems: "center",
+  marginBottom: 8,
+},
 
+topMetaText: {
+  fontSize: 17,
+  fontFamily:' sans-serif',
+  fontWeight: "600",
+  color: "rgb(255, 255, 255)",
+},
+primarySub: {
+  fontSize: 20,
+  fontWeight: "600",
+  color: "#fff",
+  marginTop: 2,
+},
+topMetaDivider: {
+  fontSize: 17,
+  fontWeight: "600",
+  color: "rgba(255,255,255,0.7)",
+  marginHorizontal: 4,
+},
 distanceTop: {
   fontSize: 12,
   fontWeight: "700",
@@ -218,7 +272,7 @@ primary: {
 },
 
 secondary: {
-  fontSize: 14,
+  fontSize: 16,
   marginTop: 4,
   color: "#ffffff",
 },

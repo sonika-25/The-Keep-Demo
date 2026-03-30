@@ -6,13 +6,13 @@ import { lineString, point } from "@turf/helpers";
 import nearestPointOnLine from "@turf/nearest-point-on-line";
 import lineSliceAlong from "@turf/line-slice-along";
 import length from "@turf/length";
-import along from "@turf/along";
 import { getLocationsForRoute, INITIAL_ZOOM, type LngLat } from "./routeData";
-import { toLineFeature } from "./mapUtils";
+import { distanceMeters, toLineFeature } from "./mapUtils";
 import { MAP_STYLE_URL  , MAPBOX_TOKEN} from "./mapboxConfig";
 import { downloadOfflineForLocations, fetchDirectionsRoute,loadRouteFromCache,saveRouteToCache, type RouteFeature, type Step } from "./routeServices";
 import NewSteps from "./NewSteps";
 Mapbox.setAccessToken( MAPBOX_TOKEN)
+import along from "@turf/along";
 
 export default function MapScreen({ route }: any) {
   const routeNumber = route?.params?.routeNumber ?? 1;
@@ -33,96 +33,98 @@ export default function MapScreen({ route }: any) {
   const [remainingFeature, setRemainingFeature] = useState<GeoJSON.Feature<GeoJSON.LineString> | null>(null); 
   const cameraRef = useRef<Camera>(null);
 
-  //Fetch Route Data from cache if present, or call API
+  // Fetch route once
   useEffect(() => {
     let cancelled = false;
 
     (async () => {
-      try { //try cache
+      try {
         const cached = await loadRouteFromCache(routeNumber, tripType);
+
         let routeData = cached;
         if (!routeData) {
-          routeData = await fetchDirectionsRoute(locations); //call API if no cache
+          routeData = await fetchDirectionsRoute(locations);
           await saveRouteToCache(routeNumber, tripType, routeData);
         }
 
         if (cancelled || !routeData) return;
 
-        setRouteFeature(routeData.routeFeature); //FIND OUT
-        setRouteCoords(routeData.routeCoords); //Setting Route Coords
-        setTripMinutes(routeData.tripMinutes);//Setting time
-        setSteps(routeData.steps);//Setting steps
-  
+        setRouteFeature(routeData.routeFeature);
+        setRouteCoords(routeData.routeCoords);
+        setTripMinutes(routeData.tripMinutes);
+        setSteps(routeData.steps);
+
         const packName = `offline-pack:${tripType}:${routeNumber}`;
         downloadOfflineForLocations(locations, packName).catch((e) =>
           console.log("offline pack download failed:", e)
-        ); //saving tiles, styles etc (everything apart from route data)
+        );
       } catch (e) {
         console.log("route fetch failed:", e);
       }
     })();
 
     return () => {
-      cancelled = true; //stops from setting state if user exits but still saves data
+      cancelled = true;
     };
   }, [routeNumber, tripType]);
+  // Split route into covered vs remaining
+  // Fetch route
 
-  
-  // simulate course (TESTING ONLY)
-  useEffect(() => {
-    if (!simulate) return;
-    if (routeCoords.length < 2) return;
+useEffect(() => {
+  if (!simulate) return;
+  if (routeCoords.length < 2) return;
 
-    const routeLine = lineString(routeCoords); 
-    const totalKm = length(routeLine, { units: "kilometers" }); //calculates kms
+  const routeLine = lineString(routeCoords);
+  const totalKm = length(routeLine, { units: "kilometers" });
 
-    let progressKm = 0;
+  let progressKm = 0;
 
-    const interval = setInterval(() => {
-      progressKm += 0.02;
+  const interval = setInterval(() => {
+    progressKm += 0.02;
 
-      if (progressKm >= totalKm) {
-        clearInterval(interval);
-        return;
-      }
+    if (progressKm >= totalKm) {
+      clearInterval(interval);
+      return;
+    }
 
-      const pt = along(routeLine, progressKm, { units: "kilometers" });
-      const coord = pt.geometry.coordinates as LngLat;
+    const pt = along(routeLine, progressKm, { units: "kilometers" });
+    const coord = pt.geometry.coordinates as LngLat;
 
-      setUserCoord(coord);
-    }, 1000);
+    setUserCoord(coord);
+  }, 1000);
 
-    return () => clearInterval(interval);
-  }, [simulate, routeCoords]);
+  return () => clearInterval(interval);
+}, [simulate, routeCoords]);
 
+// Split route into covered vs remaining
 
 // Split route into covered vs remaining using distance along polyline
   useEffect(() => {
-    if (!userCoord) return; 
-    if (routeCoords.length < 2) return; //jittery otherwise
+    if (!userCoord) return;
+    if (routeCoords.length < 2) return;
 
-    const routeLine = lineString(routeCoords);//creates a polyline following route
-    const here = point(userCoord); 
+    const routeLine = lineString(routeCoords);
+    const here = point(userCoord);
 
-    const snapped = nearestPointOnLine(routeLine, here, { units: "kilometers" }); //finds the nearest point to where the user is on route 
-    const snappedCoord = snapped.geometry.coordinates as LngLat; //coords to closes point as LngLat
+    const snapped = nearestPointOnLine(routeLine, here, { units: "kilometers" });
+    const snappedCoord = snapped.geometry.coordinates as LngLat;
 
-    const traveledKm = Number((snapped.properties as any)?.location ?? 0); //travelled line
+    const traveledKm = Number((snapped.properties as any)?.location ?? 0);
     const totalKm = length(routeLine, { units: "kilometers" });
 
-    const safeTraveledKm = Math.max(0, Math.min(traveledKm, totalKm)); //dist travelled
+    const safeTraveledKm = Math.max(0, Math.min(traveledKm, totalKm));
 
     const covered =
       safeTraveledKm <= 0
-        ? toLineFeature([routeCoords[0], snappedCoord]) //safety against edge cases where travelledKm is 0
-        : (lineSliceAlong(routeLine, 0, safeTraveledKm, { //draw a line from 0 to totalkmtravelled
+        ? toLineFeature([routeCoords[0], snappedCoord])
+        : (lineSliceAlong(routeLine, 0, safeTraveledKm, {
             units: "kilometers",
           }) as GeoJSON.Feature<GeoJSON.LineString>);
 
     const remaining =
       safeTraveledKm >= totalKm
         ? toLineFeature([snappedCoord, routeCoords[routeCoords.length - 1]])
-        : (lineSliceAlong(routeLine, safeTraveledKm, totalKm, { //rest of line
+        : (lineSliceAlong(routeLine, safeTraveledKm, totalKm, {
             units: "kilometers",
           }) as GeoJSON.Feature<GeoJSON.LineString>);
 
@@ -133,6 +135,8 @@ export default function MapScreen({ route }: any) {
   return (
     <View style={styles.container}>
       <StatusBar translucent backgroundColor={"transparent"} barStyle={"dark-content"} />
+
+      
       <Pressable onPress={() => setSimulate(true)} style={styles.downloadBtn}>
         <Text style={styles.downloadBtnText}>Simulate</Text>
       </Pressable>
@@ -148,7 +152,7 @@ export default function MapScreen({ route }: any) {
           }}
         >
           <Text style={styles.recenterText}>◎</Text>
-      </Pressable>
+        </Pressable>
       <MapView
         style={styles.map}
         styleURL={MAP_STYLE_URL}
@@ -158,7 +162,10 @@ export default function MapScreen({ route }: any) {
         logoEnabled
         compassEnabled
         scaleBarEnabled={false}
-      >     
+      >
+      
+        
+
         {coveredFeature && (
           <Mapbox.ShapeSource id="covered-src" shape={coveredFeature}>
             <Mapbox.LineLayer
