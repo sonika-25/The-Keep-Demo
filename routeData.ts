@@ -21,8 +21,8 @@ export const routeOptions:Record<number, LocationStop[] >= {
     
   ],
   2: [
-    { id: "0", coordinates: [ 144.9798508239874,-37.8794347719512,], name: "Blade's Abode" },
-    { id: "1", coordinates: [ 144.9829229356322,-37.88229115613802,], name: "Giver of Life" },
+    { id: "0", coordinates: [ 148.2487836530703,-41.320140455903335,], name: "St Helen's" },
+    { id: "1", coordinates: [ 146.82719778741253,-41.11377743478085, ], name: "GeorgeTown" },
   ]
  
 };  

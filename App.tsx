@@ -17,8 +17,8 @@ function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="StartScreen">   
+    <NavigationContainer >
+      <Stack.Navigator initialRouteName="StartScreen"  screenOptions={{headerShown: false}}>   
         <Stack.Screen name="StartScreen" component={StartScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Map" component={MapScreen} /> 

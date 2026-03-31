@@ -1,6 +1,6 @@
 // src/MapScreen.tsx
 import React, { useEffect, useState,useRef } from "react";
-import { StatusBar, StyleSheet, View, Text, Pressable, TouchableOpacity } from "react-native";
+import { StatusBar, StyleSheet, View, Text, Pressable, TouchableOpacity, Image} from "react-native";
 import Mapbox, { Camera, MapView, UserLocation, PointAnnotation, ShapeSource, LineLayer } from "@rnmapbox/maps";
 import { lineString, point } from "@turf/helpers";
 import nearestPointOnLine from "@turf/nearest-point-on-line";
@@ -32,8 +32,8 @@ export default function MapScreen({ route }: any) {
   const [coveredFeature, setCoveredFeature] = useState<GeoJSON.Feature<GeoJSON.LineString> | null>(null);
   const [remainingFeature, setRemainingFeature] = useState<GeoJSON.Feature<GeoJSON.LineString> | null>(null); 
   const cameraRef = useRef<Camera>(null);
-
-  // Fetch route once
+  const [followUser, setFollowUser] = useState(true);
+  // Fetch route from cache or API
   useEffect(() => {
     let cancelled = false;
 
@@ -45,6 +45,7 @@ export default function MapScreen({ route }: any) {
         if (!routeData) {
           routeData = await fetchDirectionsRoute(locations);
           await saveRouteToCache(routeNumber, tripType, routeData);
+          console.log("Calling API, saving to Cache: " )
         }
 
         if (cancelled || !routeData) return;
@@ -67,9 +68,8 @@ export default function MapScreen({ route }: any) {
       cancelled = true;
     };
   }, [routeNumber, tripType]);
-  // Split route into covered vs remaining
-  // Fetch route
 
+//Testing simuator
 useEffect(() => {
   if (!simulate) return;
   if (routeCoords.length < 2) return;
@@ -96,7 +96,6 @@ useEffect(() => {
   return () => clearInterval(interval);
 }, [simulate, routeCoords]);
 
-// Split route into covered vs remaining
 
 // Split route into covered vs remaining using distance along polyline
   useEffect(() => {
@@ -143,15 +142,16 @@ useEffect(() => {
       <Pressable
           style={styles.recenterBtn}
           onPress={() => {
+            console.log("WO")
             if (!userCoord) return;
-
-            cameraRef.current?.flyTo(
-              [userCoord[0], userCoord[1]],
-              600
-            );
-          }}
+              setFollowUser(true);
+            }}
         >
-          <Text style={styles.recenterText}>◎</Text>
+          <Image
+            source={require("./assets/recenter.webp")}
+            style={styles.recenterText}
+            resizeMode="contain"
+          />
         </Pressable>
       <MapView
         style={styles.map}
@@ -162,6 +162,7 @@ useEffect(() => {
         logoEnabled
         compassEnabled
         scaleBarEnabled={false}
+        onTouchStart={() => setFollowUser(false)}
       >
       
         
@@ -196,7 +197,7 @@ useEffect(() => {
           </Mapbox.ShapeSource>
         )}
 
-        <Mapbox.Camera followUserLocation followZoomLevel={15} />
+        <Mapbox.Camera ref={cameraRef} followUserLocation={followUser} followZoomLevel={18} />
 
         <UserLocation
           visible = {true}
@@ -232,9 +233,9 @@ const styles = StyleSheet.create({
     width: 14,
     height: 14,
     borderRadius: 7,
-    backgroundColor: "#ff3b30",
+    backgroundColor: "#187610",
     borderWidth: 2,
-    borderColor: "#fff",
+    borderColor: "#ffffff",
   },
 
   directionsBox: {
@@ -260,22 +261,20 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   downloadBtnText: {  color: "black", fontWeight: "600" },
-   recenterBtn: {
+  recenterBtn: {
     position: "absolute",
-    top: 160,
+    bottom: 150,
     right: 16,
     width: 28,
     height: 28,
     borderRadius: 24,
-    backgroundColor: "rgb(238, 10, 10)",
+    backgroundColor: "rgb(23, 131, 66)",
     alignItems: "center",
-    elevation:10,
+    elevation:15,
     zIndex:9999,
     justifyContent: "center",
   },
   recenterText: {
-    color: "#fff",
-    fontSize: 20,
-    fontWeight: "600",
+    width:60
   },
 });

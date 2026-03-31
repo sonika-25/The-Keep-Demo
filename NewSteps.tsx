@@ -15,7 +15,7 @@ type Props = {
   routeCoords: LngLat[];
 };
 const PROMOTE_M = 30; // when to show next maneuver as the main instruction
-const ARRIVE_M = 15;  
+const ARRIVE_M = 8;  
 
 export default function NewSteps({steps, userCoord, routeCoords}:Props){
     const [stepIdx, setStepIdx] = useState(0);
@@ -188,7 +188,7 @@ export default function NewSteps({steps, userCoord, routeCoords}:Props){
     primary = nextStep?.maneuver?.instruction ?? "";
     secondary = "";
     } else {
-    primary = `Continue on ${currentStep?.name} for ${distLabel}`;
+    primary = `Continue on ${currentStep?.ref ? currentStep.ref : ""}/${currentStep?.name} for ${distLabel}`;
     secondary = `Next: ${nextStep?.maneuver?.instruction}` ;
     
     }

@@ -87,7 +87,7 @@ export default function HomeScreen({ navigation,route }: Props) {
         console.log(0)
         navigation.navigate("Map",{routeNumber:2, tripType: tripType})
         }}>
-        <Text> Test  </Text>
+        <Text> St Helens / George Town  </Text>
       </TouchableOpacity>
      
     </View>

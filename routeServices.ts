@@ -13,6 +13,7 @@ export type Step = {
   mode: string;
   name:string;
   bannerInstruction:{primary: string};
+  ref:string,
 };
 export type CachedRouteData = {
   routeFeature: RouteFeature;
@@ -85,6 +86,7 @@ export async function saveRouteToCache(
 ): Promise<void> {
   const key = getRouteCacheKey(routeNumber, tripType);
   await AsyncStorage.setItem(key, JSON.stringify(data));
+  console.log("Cache Key: ",key)
 }
 
 
@@ -97,6 +99,8 @@ export async function loadRouteFromCache(
   if (!raw) return null;
 
   try {
+      console.log("Got route from cache,", JSON.parse(raw) as CachedRouteData)
+
     return JSON.parse(raw) as CachedRouteData;
   } catch (e) {
     console.log("failed to parse cached route:", e);

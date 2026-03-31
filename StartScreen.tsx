@@ -21,14 +21,14 @@ export default function StartScreen({ navigation }: Props) {
         style={styles.button}
         onPress={() => navigation.navigate("Home", { tripType: "arrival" })}
       >
-        <Text style={styles.buttonText}>Arrival at The Keep</Text>
+        <Text style={styles.buttonText}>Going to George Town</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={[styles.button, styles.secondaryButton]}
         onPress={() => navigation.navigate("Home", { tripType: "departure" })}
       >
-        <Text style={styles.buttonText}>Departure from The Keep</Text>
+        <Text style={styles.buttonText}>Leaving from George Town</Text>
       </TouchableOpacity>
     </View>
   );
