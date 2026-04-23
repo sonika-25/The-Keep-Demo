@@ -33,7 +33,7 @@ function buildDirectionsUrl(locs: { coordinates: [number, number] }[]): string {
   const waypoints = buildWaypoints(locs);
   return `https://api.mapbox.com/directions/v5/mapbox/driving/${encodeURIComponent(
     waypoints
-  )}?alternatives=true&annotations=distance%2Cduration&banner_instructions=true&geometries=geojson&language=en&overview=full&roundabout_exits=true&steps=true&access_token=${MAPBOX_TOKEN}`
+  )}?alternatives=true&annotations=distance%2Cduration&banner_instructions=true&geometries=geojson&language=en&overview=full&steps=true&access_token=${MAPBOX_TOKEN}`
  }
 
 /*call the API (in case of no cache)*/
@@ -75,7 +75,7 @@ export async function fetchDirectionsRoute(locations: { coordinates: LngLat }[])
 
 /*HELPERS*/
 function getRouteCacheKey(routeNumber: number, tripType: string) {
-  return `route-cache:${tripType}:${routeNumber}`;
+  return `routeCsache:${tripType}:${routeNumber}`;
 }
 
 //save and load from cache

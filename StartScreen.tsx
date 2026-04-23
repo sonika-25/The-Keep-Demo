@@ -11,6 +11,7 @@ export default function StartScreen({ navigation }: Props) {
   return (
     <View style={styles.container}>
       {/* Replace with your actual logo path */}
+      <Text style ={styles.welcome}>Welcome to the Keep App</Text>
       <Image
         source={require("./assets/logo.webp")}
         style={styles.logo}
@@ -19,17 +20,13 @@ export default function StartScreen({ navigation }: Props) {
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate("Home", { tripType: "arrival" })}
+        onPress={() => navigation.navigate("Home")}
+
       >
-        <Text style={styles.buttonText}>Going to George Town</Text>
+        <Text style={styles.buttonText}>Continue to Navigation</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={[styles.button, styles.secondaryButton]}
-        onPress={() => navigation.navigate("Home", { tripType: "departure" })}
-      >
-        <Text style={styles.buttonText}>Leaving from George Town</Text>
-      </TouchableOpacity>
+     
     </View>
   );
 }
@@ -41,6 +38,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 24,
+  },
+  welcome : {
+    fontSize:25,
+    color: "#9bd4a9",
+    marginBottom: 20
   },
   logo: {
     width: 220,
@@ -61,7 +63,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#fff",
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "600",
   },
 });

@@ -6,7 +6,7 @@ import { lineString, point } from "@turf/helpers";
 import nearestPointOnLine from "@turf/nearest-point-on-line";
 import lineSliceAlong from "@turf/line-slice-along";
 import length from "@turf/length";
-import { getLocationsForRoute, INITIAL_ZOOM, type LngLat } from "./routeData";
+import { getLocationsForTrip, INITIAL_ZOOM, type LngLat } from "./routeData";
 import { distanceMeters, toLineFeature } from "./mapUtils";
 import { MAP_STYLE_URL  , MAPBOX_TOKEN} from "./mapboxConfig";
 import { downloadOfflineForLocations, fetchDirectionsRoute,loadRouteFromCache,saveRouteToCache, type RouteFeature, type Step } from "./routeServices";
@@ -15,10 +15,14 @@ Mapbox.setAccessToken( MAPBOX_TOKEN)
 import along from "@turf/along";
 
 export default function MapScreen({ route }: any) {
+  const fromId = route?.params?.fromId;
+  const toId = route?.params?.toId;
+
+  const locations = getLocationsForTrip(fromId, toId);
   const routeNumber = route?.params?.routeNumber ?? 1;
-  const tripType = route?.params?.tripType ?? "arrival";
-  const locations = getLocationsForRoute(routeNumber, tripType);
-  const offlinePackName = `offline-pack:${tripType}:${routeNumber}`;
+  //const tripType = route?.params?.tripType ?? "arrival";
+  //const locations = getLocationsForRoute(routeNumber, tripType);
+  // offlinePackName = `offline-pack:${tripType}:${routeNumber}`;
   console.log(route.params.routeNumber)
   const INITIAL_CENTER = locations[0].coordinates;
   console.log("INTIAL CENTER: ",INITIAL_CENTER)
@@ -39,14 +43,17 @@ export default function MapScreen({ route }: any) {
 
     (async () => {
       try {
-        const cached = await loadRouteFromCache(routeNumber, tripType);
+        const cacheKeyFrom = fromId;
+        const cacheKeyTo = toId;
+
+        const cached = await loadRouteFromCache(cacheKeyFrom, cacheKeyTo);
 
         let routeData = cached;
         if (!routeData) {
           routeData = await fetchDirectionsRoute(locations);
-          await saveRouteToCache(routeNumber, tripType, routeData);
-          console.log("Calling API, saving to Cache: " )
+          await saveRouteToCache(cacheKeyFrom, cacheKeyTo, routeData);
         }
+        
 
         if (cancelled || !routeData) return;
 
@@ -55,7 +62,7 @@ export default function MapScreen({ route }: any) {
         setTripMinutes(routeData.tripMinutes);
         setSteps(routeData.steps);
 
-        const packName = `offline-pack:${tripType}:${routeNumber}`;
+        const packName = `offlinePack:${fromId}:${toId}`;
         downloadOfflineForLocations(locations, packName).catch((e) =>
           console.log("offline pack download failed:", e)
         );
@@ -67,7 +74,7 @@ export default function MapScreen({ route }: any) {
     return () => {
       cancelled = true;
     };
-  }, [routeNumber, tripType]);
+  }, [toId, fromId]);
 
 //Testing simuator
 useEffect(() => {
@@ -147,11 +154,7 @@ useEffect(() => {
               setFollowUser(true);
             }}
         >
-          <Image
-            source={require("./assets/recenter.webp")}
-            style={styles.recenterText}
-            resizeMode="contain"
-          />
+          <Text style={styles.recenterText}>⦾ </Text>
         </Pressable>
       <MapView
         style={styles.map}
@@ -197,7 +200,7 @@ useEffect(() => {
           </Mapbox.ShapeSource>
         )}
 
-        <Mapbox.Camera ref={cameraRef} followUserLocation={followUser} followZoomLevel={18} />
+        <Mapbox.Camera ref={cameraRef} followUserLocation={followUser} followZoomLevel={14} />
 
         <UserLocation
           visible = {true}
@@ -263,10 +266,10 @@ const styles = StyleSheet.create({
   downloadBtnText: {  color: "black", fontWeight: "600" },
   recenterBtn: {
     position: "absolute",
-    bottom: 150,
+    bottom: 155,
     right: 16,
-    width: 28,
-    height: 28,
+    width: 40,
+    height: 40,
     borderRadius: 24,
     backgroundColor: "rgb(23, 131, 66)",
     alignItems: "center",
@@ -275,6 +278,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   recenterText: {
-    width:60
+    fontSize:35,
+    textAlign:"right",
+    bottom:4,
+    left:5,
+    color:"white"
   },
 });
