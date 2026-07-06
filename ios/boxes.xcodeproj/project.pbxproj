@@ -11,20 +11,45 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		8F091C3D74814161ACA3A9DA /* CreatoDisplay-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 38A0C807D6B34883849407FE /* CreatoDisplay-Black.otf */; };
-		E95D6A41CE1849DE9F95D916 /* CreatoDisplay-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0DCE7290579B448DBA5A3167 /* CreatoDisplay-BlackItalic.otf */; };
-		6D98220F51934FF5A27F9543 /* CreatoDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BB84FE5289034C52B02A385C /* CreatoDisplay-Bold.otf */; };
-		2BD8477F6C3D43F7A18BF2BE /* CreatoDisplay-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = B0C4F31CB1BD4BBFBBABB863 /* CreatoDisplay-BoldItalic.otf */; };
-		A4D484A173CC40999B11A5E0 /* CreatoDisplay-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CA84AFB3BEB5427498599A60 /* CreatoDisplay-ExtraBold.otf */; };
-		2EA7E6FDD3E54F42B889859C /* CreatoDisplay-ExtraBoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = DBC292C5DE0343DCA5DFE684 /* CreatoDisplay-ExtraBoldItalic.otf */; };
-		AB147D95B02B46789F03FAD8 /* CreatoDisplay-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 811C6D9578A14C1AA9282495 /* CreatoDisplay-Light.otf */; };
-		267D50FF01A04CE98605E15D /* CreatoDisplay-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C40C28AA97F947E3853F5431 /* CreatoDisplay-LightItalic.otf */; };
-		F3D9F0BF0DD143A1AC5D5140 /* CreatoDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8095D6A7ACEA4AEC9E4C1053 /* CreatoDisplay-Medium.otf */; };
-		C1A8F7B56858496BBAE34406 /* CreatoDisplay-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = E3A838AAD2BA45A69FDAE966 /* CreatoDisplay-MediumItalic.otf */; };
-		8874252DD6734B60A81C5CAE /* CreatoDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 462D38026E4248309993114F /* CreatoDisplay-Regular.otf */; };
-		6AE3DC54167A4B0784A2F651 /* CreatoDisplay-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0520D7922373471F93004B53 /* CreatoDisplay-RegularItalic.otf */; };
-		50470C71AD6642DDAABE81D1 /* CreatoDisplay-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8DD36D007F0F4BBB9989AE7F /* CreatoDisplay-Thin.otf */; };
-		27AC2AB81D7A403F84ABAD8A /* CreatoDisplay-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5D347F018BFF43E5A939125F /* CreatoDisplay-ThinItalic.otf */; };
+		FAC3A6F885B147BDA9DCA2F9 /* CreatoDisplay-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0E6FA5A73D23420E839926E1 /* CreatoDisplay-Black.otf */; };
+		753819ADB6954BE8A9EF5250 /* CreatoDisplay-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 389C3F94EF704E5E87B7464C /* CreatoDisplay-BlackItalic.otf */; };
+		642D40A388D44DEABF480891 /* CreatoDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E7E47BA71D754F1CBA39F5FA /* CreatoDisplay-Bold.otf */; };
+		3C17A0C9581B43D19A5497A6 /* CreatoDisplay-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = BE46667958CD4A4EAD4E9E18 /* CreatoDisplay-BoldItalic.otf */; };
+		127661C2F89D428BB24A296B /* CreatoDisplay-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D1B3E32BCCBF46FA950CC328 /* CreatoDisplay-ExtraBold.otf */; };
+		3E7EC5D6B48C4394B0D5DDA7 /* CreatoDisplay-ExtraBoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = E1EEE887FED94812B01E2742 /* CreatoDisplay-ExtraBoldItalic.otf */; };
+		73F31EF8B94F44C0B4BCC0AD /* CreatoDisplay-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = B54653AD0AA94A67B9462B53 /* CreatoDisplay-Light.otf */; };
+		29DDB828F9BB4A229CA70045 /* CreatoDisplay-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 222BC3F5B9934C688631F545 /* CreatoDisplay-LightItalic.otf */; };
+		2F54F4AF499E4904808669C3 /* CreatoDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DBE36EF0138C4B93BE1AD2A9 /* CreatoDisplay-Medium.otf */; };
+		561B4EF1DAD1484C9DA1B453 /* CreatoDisplay-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 76D9C544A2354F5C8AAFF056 /* CreatoDisplay-MediumItalic.otf */; };
+		1CF309F549694DD3A8118D86 /* CreatoDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4368CDD58C384346A6DE0D19 /* CreatoDisplay-Regular.otf */; };
+		AABC2EDA490A4FDE9CC09127 /* CreatoDisplay-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7B2D930A49C04843BDE7C444 /* CreatoDisplay-RegularItalic.otf */; };
+		4287D7071BFF4E9F8D40CEDA /* CreatoDisplay-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7157AA87666244E2BD0CC2CD /* CreatoDisplay-Thin.otf */; };
+		E5C00D004E4D4D09B89D9A5A /* CreatoDisplay-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = F334C040A63E451596ADE69B /* CreatoDisplay-ThinItalic.otf */; };
+		F77402D68D974066838FB3AF /* Cinzel-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19042C2C4A89449485D63E0A /* Cinzel-Black.ttf */; };
+		DC7BBCF1C8B04939B445D957 /* Cinzel-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F7762422F4248AE8729C92F /* Cinzel-Bold.ttf */; };
+		F6372B1DB3AE47A0A2E0A2EC /* Cinzel-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A59CC29B06844901812FD495 /* Cinzel-ExtraBold.ttf */; };
+		48BFDBF806404054AAE18CD0 /* Cinzel-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E8A4C4E1643400E8592A29C /* Cinzel-Medium.ttf */; };
+		8D64CC9D1A6E41F08982223C /* Cinzel-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82349440BFD1445288839EEB /* Cinzel-Regular.ttf */; };
+		D1AA4D84DA8441D0AD11DA7A /* Cinzel-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 617C7EBD2F8A4CC1BA873531 /* Cinzel-SemiBold.ttf */; };
+		8B2A1AB34652412AB2924528 /* Cinzel-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D90B6B9810494CAE80689184 /* Cinzel-VariableFont_wght.ttf */; };
+		1E223522DB60429CA059A36B /* CormorantGaramond-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 72894CC6247840A1AF0555CC /* CormorantGaramond-Bold.ttf */; };
+		D338C70F290A46C89C39DD8A /* CormorantGaramond-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2773617F0E1D4D50BD16D801 /* CormorantGaramond-BoldItalic.ttf */; };
+		E716924056BB4BE19CB91863 /* CormorantGaramond-Italic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D27B33194E664D86B59A06E9 /* CormorantGaramond-Italic-VariableFont_wght.ttf */; };
+		76B38FD0934B4290908B4054 /* CormorantGaramond-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5458C983578B4275B440A3CC /* CormorantGaramond-Italic.ttf */; };
+		BAABFFF0373741F984964888 /* CormorantGaramond-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 26CD932285A84D6AA807FA0A /* CormorantGaramond-Light.ttf */; };
+		A7F06818F46744ADA5864A2A /* CormorantGaramond-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 046BD3CF8FF64EB6BB4E5BE6 /* CormorantGaramond-LightItalic.ttf */; };
+		12CCF89EE3164792AC7CC078 /* CormorantGaramond-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49FB5296AEC44A4F958E7EE1 /* CormorantGaramond-Medium.ttf */; };
+		9BE6BB7ED60F40728171D42F /* CormorantGaramond-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 25BB8567C06F41F08BDA57B9 /* CormorantGaramond-MediumItalic.ttf */; };
+		1823A4E147114EB49CAAE901 /* CormorantGaramond-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F4229C59E9F44D8B973CCF3 /* CormorantGaramond-Regular.ttf */; };
+		EB078AA66EBF4E98A7A023FE /* CormorantGaramond-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F1429B5113704D58AFEDC46E /* CormorantGaramond-SemiBold.ttf */; };
+		8430288A0EC343E7B7C4C2EE /* CormorantGaramond-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B57972134394AAAA578987C /* CormorantGaramond-SemiBoldItalic.ttf */; };
+		7D5E7D54E0524107996BC71C /* CormorantGaramond-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67F3F2BA17674724BCC28B77 /* CormorantGaramond-VariableFont_wght.ttf */; };
+		0D215E4357D94171AEDCFE03 /* Cinzel.zip in Resources */ = {isa = PBXBuildFile; fileRef = E910E626F1DE4D528D391C04 /* Cinzel.zip */; };
+		B0FD30DDCBC941B8824C2889 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = F07B107DA92540608ECEBA58 /* OFL.txt */; };
+		EB635B91E38B4D8196C045D1 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 502384075CC74512B8DAEF61 /* README.txt */; };
+		24A1F5D0B05745FAAAFDA9AE /* Cormorant_Garamond.zip in Resources */ = {isa = PBXBuildFile; fileRef = 44012206B96F4EAD8F5760C1 /* Cormorant_Garamond.zip */; };
+		C5CF299FF0AF48D9935A4129 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 187C9AF675FC47AD8303D753 /* OFL.txt */; };
+		FD668B3F696D49B8A78F2EFB /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = BBE4346EF164410AA60A2072 /* README.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,20 +63,45 @@
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = boxes/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = boxes/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		38A0C807D6B34883849407FE /* CreatoDisplay-Black.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-Black.otf"; path = "../assets/fonts/CreatoDisplay-Black.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		0DCE7290579B448DBA5A3167 /* CreatoDisplay-BlackItalic.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-BlackItalic.otf"; path = "../assets/fonts/CreatoDisplay-BlackItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		BB84FE5289034C52B02A385C /* CreatoDisplay-Bold.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-Bold.otf"; path = "../assets/fonts/CreatoDisplay-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		B0C4F31CB1BD4BBFBBABB863 /* CreatoDisplay-BoldItalic.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-BoldItalic.otf"; path = "../assets/fonts/CreatoDisplay-BoldItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		CA84AFB3BEB5427498599A60 /* CreatoDisplay-ExtraBold.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-ExtraBold.otf"; path = "../assets/fonts/CreatoDisplay-ExtraBold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		DBC292C5DE0343DCA5DFE684 /* CreatoDisplay-ExtraBoldItalic.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-ExtraBoldItalic.otf"; path = "../assets/fonts/CreatoDisplay-ExtraBoldItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		811C6D9578A14C1AA9282495 /* CreatoDisplay-Light.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-Light.otf"; path = "../assets/fonts/CreatoDisplay-Light.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		C40C28AA97F947E3853F5431 /* CreatoDisplay-LightItalic.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-LightItalic.otf"; path = "../assets/fonts/CreatoDisplay-LightItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		8095D6A7ACEA4AEC9E4C1053 /* CreatoDisplay-Medium.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-Medium.otf"; path = "../assets/fonts/CreatoDisplay-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		E3A838AAD2BA45A69FDAE966 /* CreatoDisplay-MediumItalic.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-MediumItalic.otf"; path = "../assets/fonts/CreatoDisplay-MediumItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		462D38026E4248309993114F /* CreatoDisplay-Regular.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-Regular.otf"; path = "../assets/fonts/CreatoDisplay-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		0520D7922373471F93004B53 /* CreatoDisplay-RegularItalic.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-RegularItalic.otf"; path = "../assets/fonts/CreatoDisplay-RegularItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		8DD36D007F0F4BBB9989AE7F /* CreatoDisplay-Thin.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-Thin.otf"; path = "../assets/fonts/CreatoDisplay-Thin.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		5D347F018BFF43E5A939125F /* CreatoDisplay-ThinItalic.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-ThinItalic.otf"; path = "../assets/fonts/CreatoDisplay-ThinItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0E6FA5A73D23420E839926E1 /* CreatoDisplay-Black.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-Black.otf"; path = "../assets/fonts/CreatoDisplay-Black.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		389C3F94EF704E5E87B7464C /* CreatoDisplay-BlackItalic.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-BlackItalic.otf"; path = "../assets/fonts/CreatoDisplay-BlackItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E7E47BA71D754F1CBA39F5FA /* CreatoDisplay-Bold.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-Bold.otf"; path = "../assets/fonts/CreatoDisplay-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BE46667958CD4A4EAD4E9E18 /* CreatoDisplay-BoldItalic.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-BoldItalic.otf"; path = "../assets/fonts/CreatoDisplay-BoldItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D1B3E32BCCBF46FA950CC328 /* CreatoDisplay-ExtraBold.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-ExtraBold.otf"; path = "../assets/fonts/CreatoDisplay-ExtraBold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E1EEE887FED94812B01E2742 /* CreatoDisplay-ExtraBoldItalic.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-ExtraBoldItalic.otf"; path = "../assets/fonts/CreatoDisplay-ExtraBoldItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B54653AD0AA94A67B9462B53 /* CreatoDisplay-Light.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-Light.otf"; path = "../assets/fonts/CreatoDisplay-Light.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		222BC3F5B9934C688631F545 /* CreatoDisplay-LightItalic.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-LightItalic.otf"; path = "../assets/fonts/CreatoDisplay-LightItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DBE36EF0138C4B93BE1AD2A9 /* CreatoDisplay-Medium.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-Medium.otf"; path = "../assets/fonts/CreatoDisplay-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		76D9C544A2354F5C8AAFF056 /* CreatoDisplay-MediumItalic.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-MediumItalic.otf"; path = "../assets/fonts/CreatoDisplay-MediumItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4368CDD58C384346A6DE0D19 /* CreatoDisplay-Regular.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-Regular.otf"; path = "../assets/fonts/CreatoDisplay-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7B2D930A49C04843BDE7C444 /* CreatoDisplay-RegularItalic.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-RegularItalic.otf"; path = "../assets/fonts/CreatoDisplay-RegularItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7157AA87666244E2BD0CC2CD /* CreatoDisplay-Thin.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-Thin.otf"; path = "../assets/fonts/CreatoDisplay-Thin.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F334C040A63E451596ADE69B /* CreatoDisplay-ThinItalic.otf */ = {isa = PBXFileReference; name = "CreatoDisplay-ThinItalic.otf"; path = "../assets/fonts/CreatoDisplay-ThinItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		19042C2C4A89449485D63E0A /* Cinzel-Black.ttf */ = {isa = PBXFileReference; name = "Cinzel-Black.ttf"; path = "../assets/fonts/Cinzel-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9F7762422F4248AE8729C92F /* Cinzel-Bold.ttf */ = {isa = PBXFileReference; name = "Cinzel-Bold.ttf"; path = "../assets/fonts/Cinzel-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A59CC29B06844901812FD495 /* Cinzel-ExtraBold.ttf */ = {isa = PBXFileReference; name = "Cinzel-ExtraBold.ttf"; path = "../assets/fonts/Cinzel-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7E8A4C4E1643400E8592A29C /* Cinzel-Medium.ttf */ = {isa = PBXFileReference; name = "Cinzel-Medium.ttf"; path = "../assets/fonts/Cinzel-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		82349440BFD1445288839EEB /* Cinzel-Regular.ttf */ = {isa = PBXFileReference; name = "Cinzel-Regular.ttf"; path = "../assets/fonts/Cinzel-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		617C7EBD2F8A4CC1BA873531 /* Cinzel-SemiBold.ttf */ = {isa = PBXFileReference; name = "Cinzel-SemiBold.ttf"; path = "../assets/fonts/Cinzel-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D90B6B9810494CAE80689184 /* Cinzel-VariableFont_wght.ttf */ = {isa = PBXFileReference; name = "Cinzel-VariableFont_wght.ttf"; path = "../assets/fonts/Cinzel-VariableFont_wght.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		72894CC6247840A1AF0555CC /* CormorantGaramond-Bold.ttf */ = {isa = PBXFileReference; name = "CormorantGaramond-Bold.ttf"; path = "../assets/fonts/static/CormorantGaramond-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2773617F0E1D4D50BD16D801 /* CormorantGaramond-BoldItalic.ttf */ = {isa = PBXFileReference; name = "CormorantGaramond-BoldItalic.ttf"; path = "../assets/fonts/static/CormorantGaramond-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D27B33194E664D86B59A06E9 /* CormorantGaramond-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; name = "CormorantGaramond-Italic-VariableFont_wght.ttf"; path = "../assets/fonts/Cormorant_Garamond/CormorantGaramond-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5458C983578B4275B440A3CC /* CormorantGaramond-Italic.ttf */ = {isa = PBXFileReference; name = "CormorantGaramond-Italic.ttf"; path = "../assets/fonts/static/CormorantGaramond-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		26CD932285A84D6AA807FA0A /* CormorantGaramond-Light.ttf */ = {isa = PBXFileReference; name = "CormorantGaramond-Light.ttf"; path = "../assets/fonts/static/CormorantGaramond-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		046BD3CF8FF64EB6BB4E5BE6 /* CormorantGaramond-LightItalic.ttf */ = {isa = PBXFileReference; name = "CormorantGaramond-LightItalic.ttf"; path = "../assets/fonts/static/CormorantGaramond-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		49FB5296AEC44A4F958E7EE1 /* CormorantGaramond-Medium.ttf */ = {isa = PBXFileReference; name = "CormorantGaramond-Medium.ttf"; path = "../assets/fonts/static/CormorantGaramond-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		25BB8567C06F41F08BDA57B9 /* CormorantGaramond-MediumItalic.ttf */ = {isa = PBXFileReference; name = "CormorantGaramond-MediumItalic.ttf"; path = "../assets/fonts/static/CormorantGaramond-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2F4229C59E9F44D8B973CCF3 /* CormorantGaramond-Regular.ttf */ = {isa = PBXFileReference; name = "CormorantGaramond-Regular.ttf"; path = "../assets/fonts/static/CormorantGaramond-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F1429B5113704D58AFEDC46E /* CormorantGaramond-SemiBold.ttf */ = {isa = PBXFileReference; name = "CormorantGaramond-SemiBold.ttf"; path = "../assets/fonts/static/CormorantGaramond-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0B57972134394AAAA578987C /* CormorantGaramond-SemiBoldItalic.ttf */ = {isa = PBXFileReference; name = "CormorantGaramond-SemiBoldItalic.ttf"; path = "../assets/fonts/static/CormorantGaramond-SemiBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		67F3F2BA17674724BCC28B77 /* CormorantGaramond-VariableFont_wght.ttf */ = {isa = PBXFileReference; name = "CormorantGaramond-VariableFont_wght.ttf"; path = "../assets/fonts/Cormorant_Garamond/CormorantGaramond-VariableFont_wght.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E910E626F1DE4D528D391C04 /* Cinzel.zip */ = {isa = PBXFileReference; name = "Cinzel.zip"; path = "../assets/fonts/Cinzel.zip"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F07B107DA92540608ECEBA58 /* OFL.txt */ = {isa = PBXFileReference; name = "OFL.txt"; path = "../assets/fonts/Cormorant_Garamond/OFL.txt"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		502384075CC74512B8DAEF61 /* README.txt */ = {isa = PBXFileReference; name = "README.txt"; path = "../assets/fonts/Cormorant_Garamond/README.txt"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		44012206B96F4EAD8F5760C1 /* Cormorant_Garamond.zip */ = {isa = PBXFileReference; name = "Cormorant_Garamond.zip"; path = "../assets/fonts/Cormorant_Garamond.zip"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		187C9AF675FC47AD8303D753 /* OFL.txt */ = {isa = PBXFileReference; name = "OFL.txt"; path = "../assets/fonts/OFL.txt"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BBE4346EF164410AA60A2072 /* README.txt */ = {isa = PBXFileReference; name = "README.txt"; path = "../assets/fonts/README.txt"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,20 +179,45 @@
 		0EC44046AF6240FAB4A27FFC /* Resources */ = {
 			isa = "PBXGroup";
 			children = (
-				38A0C807D6B34883849407FE /* CreatoDisplay-Black.otf */,
-				0DCE7290579B448DBA5A3167 /* CreatoDisplay-BlackItalic.otf */,
-				BB84FE5289034C52B02A385C /* CreatoDisplay-Bold.otf */,
-				B0C4F31CB1BD4BBFBBABB863 /* CreatoDisplay-BoldItalic.otf */,
-				CA84AFB3BEB5427498599A60 /* CreatoDisplay-ExtraBold.otf */,
-				DBC292C5DE0343DCA5DFE684 /* CreatoDisplay-ExtraBoldItalic.otf */,
-				811C6D9578A14C1AA9282495 /* CreatoDisplay-Light.otf */,
-				C40C28AA97F947E3853F5431 /* CreatoDisplay-LightItalic.otf */,
-				8095D6A7ACEA4AEC9E4C1053 /* CreatoDisplay-Medium.otf */,
-				E3A838AAD2BA45A69FDAE966 /* CreatoDisplay-MediumItalic.otf */,
-				462D38026E4248309993114F /* CreatoDisplay-Regular.otf */,
-				0520D7922373471F93004B53 /* CreatoDisplay-RegularItalic.otf */,
-				8DD36D007F0F4BBB9989AE7F /* CreatoDisplay-Thin.otf */,
-				5D347F018BFF43E5A939125F /* CreatoDisplay-ThinItalic.otf */,
+				0E6FA5A73D23420E839926E1 /* CreatoDisplay-Black.otf */,
+				389C3F94EF704E5E87B7464C /* CreatoDisplay-BlackItalic.otf */,
+				E7E47BA71D754F1CBA39F5FA /* CreatoDisplay-Bold.otf */,
+				BE46667958CD4A4EAD4E9E18 /* CreatoDisplay-BoldItalic.otf */,
+				D1B3E32BCCBF46FA950CC328 /* CreatoDisplay-ExtraBold.otf */,
+				E1EEE887FED94812B01E2742 /* CreatoDisplay-ExtraBoldItalic.otf */,
+				B54653AD0AA94A67B9462B53 /* CreatoDisplay-Light.otf */,
+				222BC3F5B9934C688631F545 /* CreatoDisplay-LightItalic.otf */,
+				DBE36EF0138C4B93BE1AD2A9 /* CreatoDisplay-Medium.otf */,
+				76D9C544A2354F5C8AAFF056 /* CreatoDisplay-MediumItalic.otf */,
+				4368CDD58C384346A6DE0D19 /* CreatoDisplay-Regular.otf */,
+				7B2D930A49C04843BDE7C444 /* CreatoDisplay-RegularItalic.otf */,
+				7157AA87666244E2BD0CC2CD /* CreatoDisplay-Thin.otf */,
+				F334C040A63E451596ADE69B /* CreatoDisplay-ThinItalic.otf */,
+				19042C2C4A89449485D63E0A /* Cinzel-Black.ttf */,
+				9F7762422F4248AE8729C92F /* Cinzel-Bold.ttf */,
+				A59CC29B06844901812FD495 /* Cinzel-ExtraBold.ttf */,
+				7E8A4C4E1643400E8592A29C /* Cinzel-Medium.ttf */,
+				82349440BFD1445288839EEB /* Cinzel-Regular.ttf */,
+				617C7EBD2F8A4CC1BA873531 /* Cinzel-SemiBold.ttf */,
+				D90B6B9810494CAE80689184 /* Cinzel-VariableFont_wght.ttf */,
+				72894CC6247840A1AF0555CC /* CormorantGaramond-Bold.ttf */,
+				2773617F0E1D4D50BD16D801 /* CormorantGaramond-BoldItalic.ttf */,
+				D27B33194E664D86B59A06E9 /* CormorantGaramond-Italic-VariableFont_wght.ttf */,
+				5458C983578B4275B440A3CC /* CormorantGaramond-Italic.ttf */,
+				26CD932285A84D6AA807FA0A /* CormorantGaramond-Light.ttf */,
+				046BD3CF8FF64EB6BB4E5BE6 /* CormorantGaramond-LightItalic.ttf */,
+				49FB5296AEC44A4F958E7EE1 /* CormorantGaramond-Medium.ttf */,
+				25BB8567C06F41F08BDA57B9 /* CormorantGaramond-MediumItalic.ttf */,
+				2F4229C59E9F44D8B973CCF3 /* CormorantGaramond-Regular.ttf */,
+				F1429B5113704D58AFEDC46E /* CormorantGaramond-SemiBold.ttf */,
+				0B57972134394AAAA578987C /* CormorantGaramond-SemiBoldItalic.ttf */,
+				67F3F2BA17674724BCC28B77 /* CormorantGaramond-VariableFont_wght.ttf */,
+				E910E626F1DE4D528D391C04 /* Cinzel.zip */,
+				F07B107DA92540608ECEBA58 /* OFL.txt */,
+				502384075CC74512B8DAEF61 /* README.txt */,
+				44012206B96F4EAD8F5760C1 /* Cormorant_Garamond.zip */,
+				187C9AF675FC47AD8303D753 /* OFL.txt */,
+				BBE4346EF164410AA60A2072 /* README.txt */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -210,20 +285,45 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				8F091C3D74814161ACA3A9DA /* CreatoDisplay-Black.otf in Resources */,
-				E95D6A41CE1849DE9F95D916 /* CreatoDisplay-BlackItalic.otf in Resources */,
-				6D98220F51934FF5A27F9543 /* CreatoDisplay-Bold.otf in Resources */,
-				2BD8477F6C3D43F7A18BF2BE /* CreatoDisplay-BoldItalic.otf in Resources */,
-				A4D484A173CC40999B11A5E0 /* CreatoDisplay-ExtraBold.otf in Resources */,
-				2EA7E6FDD3E54F42B889859C /* CreatoDisplay-ExtraBoldItalic.otf in Resources */,
-				AB147D95B02B46789F03FAD8 /* CreatoDisplay-Light.otf in Resources */,
-				267D50FF01A04CE98605E15D /* CreatoDisplay-LightItalic.otf in Resources */,
-				F3D9F0BF0DD143A1AC5D5140 /* CreatoDisplay-Medium.otf in Resources */,
-				C1A8F7B56858496BBAE34406 /* CreatoDisplay-MediumItalic.otf in Resources */,
-				8874252DD6734B60A81C5CAE /* CreatoDisplay-Regular.otf in Resources */,
-				6AE3DC54167A4B0784A2F651 /* CreatoDisplay-RegularItalic.otf in Resources */,
-				50470C71AD6642DDAABE81D1 /* CreatoDisplay-Thin.otf in Resources */,
-				27AC2AB81D7A403F84ABAD8A /* CreatoDisplay-ThinItalic.otf in Resources */,
+				FAC3A6F885B147BDA9DCA2F9 /* CreatoDisplay-Black.otf in Resources */,
+				753819ADB6954BE8A9EF5250 /* CreatoDisplay-BlackItalic.otf in Resources */,
+				642D40A388D44DEABF480891 /* CreatoDisplay-Bold.otf in Resources */,
+				3C17A0C9581B43D19A5497A6 /* CreatoDisplay-BoldItalic.otf in Resources */,
+				127661C2F89D428BB24A296B /* CreatoDisplay-ExtraBold.otf in Resources */,
+				3E7EC5D6B48C4394B0D5DDA7 /* CreatoDisplay-ExtraBoldItalic.otf in Resources */,
+				73F31EF8B94F44C0B4BCC0AD /* CreatoDisplay-Light.otf in Resources */,
+				29DDB828F9BB4A229CA70045 /* CreatoDisplay-LightItalic.otf in Resources */,
+				2F54F4AF499E4904808669C3 /* CreatoDisplay-Medium.otf in Resources */,
+				561B4EF1DAD1484C9DA1B453 /* CreatoDisplay-MediumItalic.otf in Resources */,
+				1CF309F549694DD3A8118D86 /* CreatoDisplay-Regular.otf in Resources */,
+				AABC2EDA490A4FDE9CC09127 /* CreatoDisplay-RegularItalic.otf in Resources */,
+				4287D7071BFF4E9F8D40CEDA /* CreatoDisplay-Thin.otf in Resources */,
+				E5C00D004E4D4D09B89D9A5A /* CreatoDisplay-ThinItalic.otf in Resources */,
+				F77402D68D974066838FB3AF /* Cinzel-Black.ttf in Resources */,
+				DC7BBCF1C8B04939B445D957 /* Cinzel-Bold.ttf in Resources */,
+				F6372B1DB3AE47A0A2E0A2EC /* Cinzel-ExtraBold.ttf in Resources */,
+				48BFDBF806404054AAE18CD0 /* Cinzel-Medium.ttf in Resources */,
+				8D64CC9D1A6E41F08982223C /* Cinzel-Regular.ttf in Resources */,
+				D1AA4D84DA8441D0AD11DA7A /* Cinzel-SemiBold.ttf in Resources */,
+				8B2A1AB34652412AB2924528 /* Cinzel-VariableFont_wght.ttf in Resources */,
+				1E223522DB60429CA059A36B /* CormorantGaramond-Bold.ttf in Resources */,
+				D338C70F290A46C89C39DD8A /* CormorantGaramond-BoldItalic.ttf in Resources */,
+				E716924056BB4BE19CB91863 /* CormorantGaramond-Italic-VariableFont_wght.ttf in Resources */,
+				76B38FD0934B4290908B4054 /* CormorantGaramond-Italic.ttf in Resources */,
+				BAABFFF0373741F984964888 /* CormorantGaramond-Light.ttf in Resources */,
+				A7F06818F46744ADA5864A2A /* CormorantGaramond-LightItalic.ttf in Resources */,
+				12CCF89EE3164792AC7CC078 /* CormorantGaramond-Medium.ttf in Resources */,
+				9BE6BB7ED60F40728171D42F /* CormorantGaramond-MediumItalic.ttf in Resources */,
+				1823A4E147114EB49CAAE901 /* CormorantGaramond-Regular.ttf in Resources */,
+				EB078AA66EBF4E98A7A023FE /* CormorantGaramond-SemiBold.ttf in Resources */,
+				8430288A0EC343E7B7C4C2EE /* CormorantGaramond-SemiBoldItalic.ttf in Resources */,
+				7D5E7D54E0524107996BC71C /* CormorantGaramond-VariableFont_wght.ttf in Resources */,
+				0D215E4357D94171AEDCFE03 /* Cinzel.zip in Resources */,
+				B0FD30DDCBC941B8824C2889 /* OFL.txt in Resources */,
+				EB635B91E38B4D8196C045D1 /* README.txt in Resources */,
+				24A1F5D0B05745FAAAFDA9AE /* Cormorant_Garamond.zip in Resources */,
+				C5CF299FF0AF48D9935A4129 /* OFL.txt in Resources */,
+				FD668B3F696D49B8A78F2EFB /* README.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

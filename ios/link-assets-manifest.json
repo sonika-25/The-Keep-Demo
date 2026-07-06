@@ -2,6 +2,58 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "assets/fonts/Cinzel-Black.ttf",
+      "sha1": "38ac576cc25bdb4aeba45ec9f79e6cfc9d5cb754"
+    },
+    {
+      "path": "assets/fonts/Cinzel-Bold.ttf",
+      "sha1": "b88b6bb7c15bc9c8b1a049f40b6c716a5d3c0672"
+    },
+    {
+      "path": "assets/fonts/Cinzel-ExtraBold.ttf",
+      "sha1": "dec4bbb4c34f8c308cbc6863938169e55dd2ec5f"
+    },
+    {
+      "path": "assets/fonts/Cinzel-Medium.ttf",
+      "sha1": "461f559b5df84aa8cabca9fbea702275c00cdce8"
+    },
+    {
+      "path": "assets/fonts/Cinzel-Regular.ttf",
+      "sha1": "e69b593cf3181656bb3634477f0ceb0089846645"
+    },
+    {
+      "path": "assets/fonts/Cinzel-SemiBold.ttf",
+      "sha1": "4b4d4822a26728e680a5f0ea9a8957ca2d5c84d2"
+    },
+    {
+      "path": "assets/fonts/Cinzel-VariableFont_wght.ttf",
+      "sha1": "c0c881eb9d89385f57c162f2a00a29c29b02f458"
+    },
+    {
+      "path": "assets/fonts/Cinzel.zip",
+      "sha1": "205570af56feb49e01bc4887c871f22828466363"
+    },
+    {
+      "path": "assets/fonts/Cormorant_Garamond.zip",
+      "sha1": "035988a22efe7ed439560722b13768eb1143ce03"
+    },
+    {
+      "path": "assets/fonts/Cormorant_Garamond/CormorantGaramond-Italic-VariableFont_wght.ttf",
+      "sha1": "bcc7afbf08460085f5dd5aeabfdcb30c5232200b"
+    },
+    {
+      "path": "assets/fonts/Cormorant_Garamond/CormorantGaramond-VariableFont_wght.ttf",
+      "sha1": "ecb3a69159a398878ae80b63c80e43f8f11e1964"
+    },
+    {
+      "path": "assets/fonts/Cormorant_Garamond/OFL.txt",
+      "sha1": "0114795fda3a11035953dab550ed29a62af3947a"
+    },
+    {
+      "path": "assets/fonts/Cormorant_Garamond/README.txt",
+      "sha1": "95000c71f3d26ec525677af4a92508d8adb9c156"
+    },
+    {
       "path": "assets/fonts/CreatoDisplay-Black.otf",
       "sha1": "daf2bfcef050664e197abb38f41e66ec7b1b8458"
     },
@@ -56,6 +108,54 @@
     {
       "path": "assets/fonts/CreatoDisplay-ThinItalic.otf",
       "sha1": "c8c938ae38493c15757d45d5ab69460dac421c80"
+    },
+    {
+      "path": "assets/fonts/OFL.txt",
+      "sha1": "145f3043ddc779395c4acccfa8fa379e4dc2622e"
+    },
+    {
+      "path": "assets/fonts/README.txt",
+      "sha1": "6af79506e643251b58fd68aa420ef0f9f63d89f7"
+    },
+    {
+      "path": "assets/fonts/static/CormorantGaramond-Bold.ttf",
+      "sha1": "c476b9ea6618c83ad0a64abd542eb3e09c142a49"
+    },
+    {
+      "path": "assets/fonts/static/CormorantGaramond-BoldItalic.ttf",
+      "sha1": "b82e8753aee88fd40d287c5b9ca7fbb254cfdb86"
+    },
+    {
+      "path": "assets/fonts/static/CormorantGaramond-Italic.ttf",
+      "sha1": "29975f0966555547fed2c1b99a2f233d87c68fe8"
+    },
+    {
+      "path": "assets/fonts/static/CormorantGaramond-Light.ttf",
+      "sha1": "df5f8bc368bf087c76ff4c2460d447081dc73df3"
+    },
+    {
+      "path": "assets/fonts/static/CormorantGaramond-LightItalic.ttf",
+      "sha1": "c8b6aa6f0e50d236ee6aacd1240553a755ec4019"
+    },
+    {
+      "path": "assets/fonts/static/CormorantGaramond-Medium.ttf",
+      "sha1": "55a98c74fc7eea493391e25bfa6cee770a9fa7f9"
+    },
+    {
+      "path": "assets/fonts/static/CormorantGaramond-MediumItalic.ttf",
+      "sha1": "4e297cd1ca5ba012f75e1836d44261844a634ea9"
+    },
+    {
+      "path": "assets/fonts/static/CormorantGaramond-Regular.ttf",
+      "sha1": "867aaae05cfce4fca8a4f5c3522b46b01b0068be"
+    },
+    {
+      "path": "assets/fonts/static/CormorantGaramond-SemiBold.ttf",
+      "sha1": "3946cea5d2f369766d54573fdae34cfcebfe7126"
+    },
+    {
+      "path": "assets/fonts/static/CormorantGaramond-SemiBoldItalic.ttf",
+      "sha1": "6694f5a47b441379a744e1f3efa71a35e89c12a6"
     }
   ]
 }

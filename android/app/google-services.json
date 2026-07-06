@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "875145427707",
+    "project_id": "the-keep-8c797",
+    "storage_bucket": "the-keep-8c797.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875145427707:android:65f7bfcba0c1e38b570e5e",
+        "android_client_info": {
+          "package_name": "com.boxes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhaDXFHdxQmGy6l5Tx3jZ33POc9nLH_TA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
